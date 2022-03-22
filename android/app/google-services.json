@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "552400860537",
+    "project_id": "meraki-721e0",
+    "storage_bucket": "meraki-721e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552400860537:android:25e63aa9535102933eeba8",
+        "android_client_info": {
+          "package_name": "com.example.meraki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552400860537-pi50stgrapv7khkbsoqme22ri756k8jb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHsqTyk5NPXff-hzq4aA8jxI1KL0DKTng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552400860537-pi50stgrapv7khkbsoqme22ri756k8jb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
