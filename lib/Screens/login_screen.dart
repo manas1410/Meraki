@@ -58,6 +58,7 @@ class _SignInState extends State<SignIn> {
       });
     }
   }
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +79,7 @@ class _SignInState extends State<SignIn> {
                     Container(
                       alignment: Alignment.centerRight,
                       child: Image.asset("assets/images/cyber.png",
-                        height: 100,
+                        height: 200,
                       ),
                     ),
                     SizedBox(height: 40,),
@@ -137,7 +138,7 @@ class _SignInState extends State<SignIn> {
                     Container(
                       width: 250,
                       child: TextFormField(
-                        obscureText: true,
+                        obscureText: _isObscure,
                         validator: (val) {
                           return (val!.length > 6)
                               ? null
@@ -147,6 +148,15 @@ class _SignInState extends State<SignIn> {
                         style: simpleTextFieldStyle(),
                         decoration: InputDecoration(
                             hintText: "Password",
+                            suffixIcon: IconButton(
+                                icon: Icon(
+                                    _isObscure ? Icons.visibility : Icons.visibility_off,
+                                color: Color.fromRGBO(245, 237, 223, 1),),
+                                onPressed: () {
+                                  setState(() {
+                                    _isObscure = !_isObscure;
+                                  });
+                                }),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
@@ -169,11 +179,15 @@ class _SignInState extends State<SignIn> {
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Text(
                       "Forget Password?",
-                      style: mediumTextFieldStyle(),
+                      style: TextStyle(
+                        fontSize: 14,
+                          decoration: TextDecoration.underline
+                      ),
+
                     ),
                   )),
               SizedBox(
-                height: 8,
+                height: 15,
               ),
               GestureDetector(
                 onTap: () {
@@ -181,15 +195,17 @@ class _SignInState extends State<SignIn> {
                 },
                 child: Container(
                   alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.symmetric(vertical: 20),
+                  width: MediaQuery.of(context).size.width*0.40,
+                  padding: EdgeInsets.symmetric(vertical: 10,horizontal: 30),
                   decoration: BoxDecoration(
-                    color: Color(0xff2A60BC),
+                    color: Color.fromRGBO(38, 108, 5, 1),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Text(
-                    "Sign In",
+                    "LOGIN",
                     style: TextStyle(
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                      fontFamily: 'Montserrat',
                       fontSize: 23,
                     ),
                   ),
@@ -198,34 +214,31 @@ class _SignInState extends State<SignIn> {
               SizedBox(
                 height: 8,
               ),
-              Container(
+              /*Container(
                 alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.width*0.40,
                 padding: EdgeInsets.symmetric(vertical: 20),
                 decoration: BoxDecoration(
-                  color:Color(0xff2A55BC),
+                  color:Color.fromRGBO(38, 108, 5, 1),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Row(
                   children: [
-                    SizedBox(
-                      width:50 ,
-                    ),
                     Image.asset("assets/images/google.png",
                       height: 30,
                     ),
                     Text("  Sign In with Google",
                         style: TextStyle(
-                          fontSize: 23,
+                          fontSize: 8,
                           fontWeight: FontWeight.bold,
                         )),
                   ],
                 ),
-              ),
+              ),*/
               SizedBox(
                 height: 8,
               ),
-              Row(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -241,6 +254,8 @@ class _SignInState extends State<SignIn> {
                       child: Text(
                         "Register Now ",
                         style: TextStyle(
+                          color: Color.fromRGBO(120, 76, 66, 1),
+                          fontFamily: 'Montserrat',
                           fontSize: 17,
                           decoration: TextDecoration.underline,
                         ),

@@ -23,7 +23,6 @@ TextStyle welcomeback(){
       fontWeight: FontWeight.w500,
       foreground: Paint()..shader = LinearGradient(
         begin: Alignment.topCenter,
-
         end: Alignment.bottomCenter,
         colors: <Color>[
           Color.fromRGBO(11, 33, 1, 1),
