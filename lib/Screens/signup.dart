@@ -57,11 +57,11 @@ class _SignUpState extends State<SignUp> {
       });
     }
   }
-
+  bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+        backgroundColor: Color.fromRGBO(245, 237, 223, 1),
       body: isLoading
           ? Container(
         child: Center(child: CircularProgressIndicator()),
@@ -75,8 +75,14 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: Image.asset("assets/images/cyber.png",
+                    height: 200,
+                  ),
+                ),
                 //SizedBox(height:50,),
-                //SizedBox(height: 8,),
+                SizedBox(height: MediaQuery.of(context).size.width*0.30,),
                 Form(
                   key: formKey,
                   child: Column(
@@ -89,7 +95,15 @@ class _SignUpState extends State<SignUp> {
                         },
                         controller: userNameTextEditingController,
                         style: simpleTextFieldStyle(),
-                        decoration: textFieldInputDecoration("Username"),
+                        decoration: InputDecoration(
+                            hintText: "USERNAME",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            filled: true,
+                            hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
+
+                        ),
                       ),
                       SizedBox(
                         height: 4,
@@ -104,13 +118,21 @@ class _SignUpState extends State<SignUp> {
                         },
                         controller: emailTextEditingController,
                         style: simpleTextFieldStyle(),
-                        decoration: textFieldInputDecoration("Email"),
+                        decoration: InputDecoration(
+                            hintText: "EMAIL",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            filled: true,
+                            hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
+
+                        ),
                       ),
                       SizedBox(
                         height: 4,
                       ),
                       TextFormField(
-                        obscureText: true,
+                        obscureText: _isObscure,
                         validator: (val) {
                           return (val!.length > 6)
                               ? null
@@ -118,7 +140,23 @@ class _SignUpState extends State<SignUp> {
                         },
                         controller: passwordTextEditingController,
                         style: simpleTextFieldStyle(),
-                        decoration: textFieldInputDecoration("Password"),
+                        decoration: InputDecoration(
+                            hintText: "PASSWORD",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            filled: true,
+                            hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1)),
+                          suffixIcon: IconButton(
+                        icon: Icon(
+                        _isObscure ? Icons.visibility : Icons.visibility_off,
+                          color: Color.fromRGBO(245, 237, 223, 1),),
+                          onPressed: () {
+                            setState(() {
+                              _isObscure = !_isObscure;
+                            });
+                          }),
+                        ),
                       ),
                     ],
                   ),
@@ -126,7 +164,7 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(
                   height: 4,
                 ),
-                Container(
+                /*Container(
                     alignment: Alignment.centerRight,
                     child: Container(
                       padding: EdgeInsets.symmetric(
@@ -135,9 +173,9 @@ class _SignUpState extends State<SignUp> {
                         "Forget Password?",
                         style: mediumTextFieldStyle(),
                       ),
-                    )),
+                    )),*/
                 SizedBox(
-                  height: 4,
+                  height: MediaQuery.of(context).size.width*0.10,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -145,22 +183,24 @@ class _SignUpState extends State<SignUp> {
                   },
                   child: Container(
                     alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery.of(context).size.width*0.40,
                     padding: EdgeInsets.symmetric(vertical: 20),
                     decoration: BoxDecoration(
-                      color: Color(0xff2A60BC),
+                      color: Color.fromRGBO(38, 108, 5, 1),
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Text("Sign Up",
                         style: TextStyle(
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                          fontFamily: 'Montserrat',
                           fontSize: 23,
                         )),
                   ),
                 ),
                 SizedBox(
-                  height: 4,
+                  height:MediaQuery.of(context).size.width*0.10,
                 ),
-                Container(
+                /*Container(
                   alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.symmetric(vertical: 20),
@@ -183,11 +223,11 @@ class _SignUpState extends State<SignUp> {
                           )),
                     ],
                   ),
-                ),
+                ),*/
                 SizedBox(
                   height: 4,
                 ),
-                Row(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -203,6 +243,8 @@ class _SignUpState extends State<SignUp> {
                         child: Text(
                           "Sign Now ",
                           style: TextStyle(
+                            color: Color.fromRGBO(120, 76, 66, 1),
+                            fontFamily: 'Montserrat',
                             fontSize: 17,
                             decoration: TextDecoration.underline,
                           ),
