@@ -67,22 +67,41 @@ class _SignInState extends State<SignIn> {
       body: SingleChildScrollView(
         child: Container(
           // color: Colors.amberAccent,
-          padding: EdgeInsets.symmetric(horizontal: 24),
+          //padding: EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(height:50,),
               Form(
                 key: formKey,
                 child: Column(
                   children: [
                     Container(
                       alignment: Alignment.centerRight,
-                      child: Image.asset("assets/images/cyber.png",
-                        height: 200,
+                      child: Stack(
+                        children:<Widget>[
+                          Positioned(
+                              child:
+                              Image.asset("assets/images/cyber1.png",
+                                  height: MediaQuery.of(context).size.height*0.4,
+                                  width: MediaQuery.of(context).size.width,
+                                  fit: BoxFit.fill
+                              )),
+                          Positioned(
+                              child:
+                              Image.asset("assets/images/cyber1.png",
+                                  height: MediaQuery.of(context).size.height*0.36,
+                                  width: MediaQuery.of(context).size.width,
+                                  fit: BoxFit.fill
+                              )),
+                          Positioned(
+                              top: MediaQuery.of(context).size.height*0.01,
+                              right: MediaQuery.of(context).size.width*0.04,
+                              child:
+                              Image.asset("assets/images/cyber.png", height: 200,)),
+                        ],
                       ),
                     ),
-                    SizedBox(height: 40,),
+                    SizedBox(height: MediaQuery.of(context).size.width*0.01,),
                     Container(
                         alignment: Alignment.center,
                         child: Container(

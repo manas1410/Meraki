@@ -71,18 +71,48 @@ class _SignUpState extends State<SignUp> {
           // height: MediaQuery.of(context).size.height - 210,
           alignment: Alignment.bottomCenter,
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 24),
+            //padding: EdgeInsets.symmetric(horizontal: 24),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
                   alignment: Alignment.centerRight,
-                  child: Image.asset("assets/images/cyber.png",
-                    height: 200,
+                  child: Stack(
+                    children:<Widget>[
+                      Positioned(
+                          child:
+                          Image.asset("assets/images/cyber1.png",
+                            height: MediaQuery.of(context).size.height*0.4,
+                            width: MediaQuery.of(context).size.width,
+                          fit: BoxFit.fill
+                       )),
+                      Positioned(
+                          child:
+                          Image.asset("assets/images/cyber1.png",
+                              height: MediaQuery.of(context).size.height*0.36,
+                              width: MediaQuery.of(context).size.width,
+                              fit: BoxFit.fill
+                          )),
+                      Positioned(
+                        top: MediaQuery.of(context).size.height*0.01,
+                        right: MediaQuery.of(context).size.width*0.04,
+                          child:
+                          Image.asset("assets/images/cyber.png", height: 200,)),
+                    ],
                   ),
                 ),
                 //SizedBox(height:50,),
-                SizedBox(height: MediaQuery.of(context).size.width*0.30,),
+                SizedBox(height: MediaQuery.of(context).size.width*0.01,),
+                Container(
+                    alignment: Alignment.center,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      child: Text(
+                        "Let's get started.",
+                        style: welcomeback(),
+
+                      ),
+                    )),
                 Form(
                   key: formKey,
                   child: Column(
@@ -106,7 +136,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       SizedBox(
-                        height: 4,
+                        height: 0,
                       ),
                       TextFormField(
                         validator: (val) {
@@ -129,7 +159,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       SizedBox(
-                        height: 4,
+                        height: 0,
                       ),
                       TextFormField(
                         obscureText: _isObscure,
@@ -175,7 +205,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                     )),*/
                 SizedBox(
-                  height: MediaQuery.of(context).size.width*0.10,
+                  height: MediaQuery.of(context).size.width*0.05,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -198,7 +228,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 SizedBox(
-                  height:MediaQuery.of(context).size.width*0.10,
+                  height:MediaQuery.of(context).size.width*0.05,
                 ),
                 /*Container(
                   alignment: Alignment.center,

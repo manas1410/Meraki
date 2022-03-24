@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.meraki">
    <application
-        android:label="meraki"
+        android:label="Translata"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
