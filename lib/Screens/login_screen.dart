@@ -101,7 +101,7 @@ class _SignInState extends State<SignIn> {
                         ],
                       ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.width*0.01,),
+                    SizedBox(height: MediaQuery.of(context).size.height*0.01,),
                     Container(
                         alignment: Alignment.center,
                         child: Container(
@@ -112,16 +112,17 @@ class _SignInState extends State<SignIn> {
 
                           ),
                         )),
-                        SizedBox(height: 40,),
+                        SizedBox(height: MediaQuery.of(context).size.height*0.02,),
                         Wrap(
                           children: [
                             Container(
                               child: Image.asset("assets/images/user.png",
-                                height: 50,
+                                height: MediaQuery.of(context).size.height*0.06,
                               ),
                             ),
                             Container(
-                              width: 250,
+                              width:  MediaQuery.of(context).size.width*0.83,
+                              height: MediaQuery.of(context).size.height*0.06,
                               child: TextFormField(
                               validator: (val) {
                                 return RegExp(
@@ -145,17 +146,18 @@ class _SignInState extends State<SignIn> {
                             ),]
                         ),
                     SizedBox(
-                      height: 8,
+                      height: MediaQuery.of(context).size.height*0.01,
                     ),
                 Wrap(
                   children: [
                     Container(
                       child: Image.asset("assets/images/pass.png",
-                        height: 50,
+                        height:  MediaQuery.of(context).size.height*0.06,
                       ),
                     ),
                     Container(
-                      width: 250,
+                      width:  MediaQuery.of(context).size.width*0.83,
+                      height: MediaQuery.of(context).size.height*0.06,
                       child: TextFormField(
                         obscureText: _isObscure,
                         validator: (val) {

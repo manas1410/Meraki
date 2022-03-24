@@ -53,7 +53,9 @@ class _SignUpState extends State<SignUp> {
         databaseMethods.uploadUserInfo(userInfoMap);
         HelperFunctions.saveUserLoggedInSharedPreference(true);
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Scaffold()));
+            context, MaterialPageRoute(builder: (context) => Scaffold(
+
+        )));
       });
     }
   }
@@ -113,80 +115,115 @@ class _SignUpState extends State<SignUp> {
 
                       ),
                     )),
+                SizedBox(height: MediaQuery.of(context).size.height*0.02,),
                 Form(
                   key: formKey,
                   child: Column(
                     children: [
-                      TextFormField(
-                        validator: (val) {
-                          return (val!.isEmpty || val.length < 4)
-                              ? "Wrong Username"
-                              : null;
-                        },
-                        controller: userNameTextEditingController,
-                        style: simpleTextFieldStyle(),
-                        decoration: InputDecoration(
-                            hintText: "USERNAME",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                      Wrap(
+                        children:[
+                          Container(
+                            child: Image.asset("assets/images/user.png",
+                              height: MediaQuery.of(context).size.height*0.06,
                             ),
-                            filled: true,
-                            hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
+                          ),
+                          Container(
+                          width:  MediaQuery.of(context).size.width*0.83,
+                          height: MediaQuery.of(context).size.height*0.06,
+                          child: TextFormField(
+                            validator: (val) {
+                              return (val!.isEmpty || val.length < 4)
+                                  ? "Wrong Username"
+                                  : null;
+                            },
+                            controller: userNameTextEditingController,
+                            style: simpleTextFieldStyle(),
+                            decoration: InputDecoration(
+                                hintText: "USERNAME",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                filled: true,
+                                hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
 
-                        ),
-                      ),
-                      SizedBox(
-                        height: 0,
-                      ),
-                      TextFormField(
-                        validator: (val) {
-                          return RegExp(
-                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(val!)
-                              ? null
-                              : "Please enter valid email address";
-                        },
-                        controller: emailTextEditingController,
-                        style: simpleTextFieldStyle(),
-                        decoration: InputDecoration(
-                            hintText: "EMAIL",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
                             ),
-                            filled: true,
-                            hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
+                          ),
+                        ),
+                        ]
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+                          Wrap(
+                            children:[
+                              Container(
+                                child: Icon(Icons.email_outlined,color: Colors.grey,),
+                                  height: MediaQuery.of(context).size.height*0.06,
+                                  width: MediaQuery.of(context).size.width*0.12
+                                ),
+                              Container(
+                              width:  MediaQuery.of(context).size.width*0.83,
+                              height: MediaQuery.of(context).size.height*0.06,
+                            child: TextFormField(
+                              validator: (val) {
+                                return RegExp(
+                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                    .hasMatch(val!)
+                                    ? null
+                                    : "Please enter valid email address";
+                              },
+                              controller: emailTextEditingController,
+                              style: simpleTextFieldStyle(),
+                              decoration: InputDecoration(
+                                  hintText: "EMAIL",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  filled: true,
+                                  hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
 
-                        ),
-                      ),
-                      SizedBox(
-                        height: 0,
-                      ),
-                      TextFormField(
-                        obscureText: _isObscure,
-                        validator: (val) {
-                          return (val!.length > 6)
-                              ? null
-                              : "Please provide password atleast 7 character";
-                        },
-                        controller: passwordTextEditingController,
-                        style: simpleTextFieldStyle(),
-                        decoration: InputDecoration(
-                            hintText: "PASSWORD",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                              ),
                             ),
-                            filled: true,
-                            hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1)),
-                          suffixIcon: IconButton(
-                        icon: Icon(
-                        _isObscure ? Icons.visibility : Icons.visibility_off,
-                          color: Color.fromRGBO(245, 237, 223, 1),),
-                          onPressed: () {
-                            setState(() {
-                              _isObscure = !_isObscure;
-                            });
-                          }),
+                        ),]
+                          ),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+                      Wrap(
+                        children: [
+                          Container(
+                            child: Image.asset("assets/images/pass.png",
+                              height:  MediaQuery.of(context).size.height*0.06,
+                            ),
+                          ),
+                          Container(
+                          width:  MediaQuery.of(context).size.width*0.83,
+                          height: MediaQuery.of(context).size.height*0.06,
+                          child: TextFormField(
+                            obscureText: _isObscure,
+                            validator: (val) {
+                              return (val!.length > 6)
+                                  ? null
+                                  : "Please provide password atleast 7 character";
+                            },
+                            controller: passwordTextEditingController,
+                            style: simpleTextFieldStyle(),
+                            decoration: InputDecoration(
+                                hintText: "PASSWORD",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                filled: true,
+                                hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1)),
+                              suffixIcon: IconButton(
+                            icon: Icon(
+                            _isObscure ? Icons.visibility : Icons.visibility_off,
+                              color: Color.fromRGBO(245, 237, 223, 1),),
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure = !_isObscure;
+                                });
+                              }),
+                            ),
+                          ),
                         ),
+                        ]
                       ),
                     ],
                   ),
@@ -213,8 +250,9 @@ class _SignUpState extends State<SignUp> {
                   },
                   child: Container(
                     alignment: Alignment.center,
+                    height: MediaQuery.of(context).size.width*0.15,
                     width: MediaQuery.of(context).size.width*0.40,
-                    padding: EdgeInsets.symmetric(vertical: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 30),
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(38, 108, 5, 1),
                       borderRadius: BorderRadius.circular(30),
