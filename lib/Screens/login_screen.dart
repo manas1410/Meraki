@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:meraki/Screens/profile.dart';
 import 'package:meraki/helper/helperfunction.dart';
 import 'package:meraki/services/auth.dart';
 import 'package:meraki/services/database.dart';
@@ -53,7 +54,9 @@ class _SignInState extends State<SignIn> {
         if (val != null) {
           HelperFunctions.saveUserLoggedInSharedPreference(true);
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Scaffold()));
+              context, MaterialPageRoute(builder: (context) => Profile()
+          )
+          );
         }
       });
     }
@@ -122,7 +125,7 @@ class _SignInState extends State<SignIn> {
                             ),
                             Container(
                               width:  MediaQuery.of(context).size.width*0.83,
-                              height: MediaQuery.of(context).size.height*0.06,
+                              height: MediaQuery.of(context).size.height*0.09,
                               child: TextFormField(
                               validator: (val) {
                                 return RegExp(
@@ -146,7 +149,7 @@ class _SignInState extends State<SignIn> {
                             ),]
                         ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height*0.01,
+                      height: MediaQuery.of(context).size.height*0.02,
                     ),
                 Wrap(
                   children: [
@@ -157,7 +160,7 @@ class _SignInState extends State<SignIn> {
                     ),
                     Container(
                       width:  MediaQuery.of(context).size.width*0.83,
-                      height: MediaQuery.of(context).size.height*0.06,
+                      height: MediaQuery.of(context).size.height*0.09,
                       child: TextFormField(
                         obscureText: _isObscure,
                         validator: (val) {
