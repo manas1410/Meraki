@@ -1,3 +1,4 @@
+import 'package:animated_button/animated_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,8 @@ import 'package:meraki/helper/helperfunction.dart';
 import 'package:meraki/services/auth.dart';
 import 'package:meraki/services/database.dart';
 import 'package:meraki/widget/widgets.dart';
+
+import 'chatsRoomScreen.dart';
 
 
 
@@ -54,7 +57,7 @@ class _SignInState extends State<SignIn> {
         if (val != null) {
           HelperFunctions.saveUserLoggedInSharedPreference(true);
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Profile()
+              context, MaterialPageRoute(builder: (context) => ChatRoom()
           )
           );
         }
@@ -218,22 +221,24 @@ class _SignInState extends State<SignIn> {
                   signIn();
                 },
                 child: Container(
-                  alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width*0.40,
-                  padding: EdgeInsets.symmetric(vertical: 10,horizontal: 30),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(38, 108, 5, 1),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Text(
-                    "LOGIN",
-                    style: TextStyle(
-                      color: Color.fromRGBO(255, 255, 255, 1),
-                      fontFamily: 'Montserrat',
-                      fontSize: 23,
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width*0.40,
+                    padding: EdgeInsets.symmetric(vertical: 10,horizontal: 30),
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(38, 108, 5, 1),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Text(
+                      "LOGIN",
+                      style: TextStyle(
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                        fontFamily: 'Montserrat',
+                        fontSize: 23,
+                      ),
                     ),
                   ),
-                ),
+
+
               ),
               SizedBox(
                 height: 8,

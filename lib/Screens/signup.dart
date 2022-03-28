@@ -7,6 +7,8 @@ import 'package:meraki/services/auth.dart';
 import 'package:meraki/services/database.dart';
 import 'package:meraki/widget/widgets.dart';
 
+import 'chatsRoomScreen.dart';
+
 class SignUp extends StatefulWidget {
   //const SignUp({Key? key}) : super(key: key);
   final Function toggle;
@@ -50,11 +52,11 @@ class _SignUpState extends State<SignUp> {
             emailTextEditingController.text);
         HelperFunctions.saveUserNameSharedPreference(
             userNameTextEditingController.text);
-
         databaseMethods.uploadUserInfo(userInfoMap);
         HelperFunctions.saveUserLoggedInSharedPreference(true);
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Profile()));
+            context, MaterialPageRoute(builder: (context) => ChatRoom()
+        ));
       });
     }
   }

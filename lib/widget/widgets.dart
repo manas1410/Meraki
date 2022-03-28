@@ -2,6 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:meraki/Screens/profile.dart';
+
+import '../services/auth.dart';
 
 InputDecoration textFieldInputDecoration(String xtext){
   return InputDecoration(
@@ -25,8 +28,9 @@ TextStyle welcomeback(){
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
         colors: <Color>[
-          Color.fromRGBO(11, 33, 1, 1),
           Color.fromRGBO(44, 137, 0, 1),
+          Color.fromRGBO(11, 33, 1, 1),
+          Color.fromRGBO(44, 137, 0, 1.0),
 
           //add more color here.
         ],
@@ -37,5 +41,44 @@ TextStyle mediumTextFieldStyle(){
   return TextStyle(
       fontSize: 17,
       fontFamily: 'Montserrat'
+  );
+}
+PreferredSizeWidget appBarMain2(BuildContext context){
+  AuthMethods authMethods =new AuthMethods();
+  return AppBar(
+    backgroundColor:Color.fromRGBO(120, 76, 66, 1),
+    toolbarHeight: 60,
+
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        bottom: Radius.circular(40),
+      ),
+    ),
+
+  );
+}
+
+PreferredSizeWidget appBarMain1(BuildContext context){
+  AuthMethods authMethods =new AuthMethods();
+  return AppBar(
+    backgroundColor:Color.fromRGBO(120, 76, 66, 1),
+    toolbarHeight: 60,
+    title:
+    GestureDetector(
+      onTap: (){
+        authMethods.signOut();
+        Navigator.pushReplacement(context, MaterialPageRoute(
+            builder: (context) => Profile()));
+      },
+      child:Image.asset("assets/images/profilepic.png",
+        height: MediaQuery.of(context).size.height*0.05,
+    ),
+    ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        bottom: Radius.circular(40),
+      ),
+    ),
+
   );
 }

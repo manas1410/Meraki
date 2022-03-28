@@ -17,24 +17,6 @@ class _ProfileState extends State<Profile> {
 
   AuthMethods authMethods =new AuthMethods();
   DatabaseMethods databaseMethods = DatabaseMethods();
-  Stream? chatRoomStream;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    getUserInfo();
-    super.initState();
-  }
-  getUserInfo() async{
-    Constants.myName = (await HelperFunctions.getUserNameSharedPreference())!;
-    //print("${Constants.myName}");
-
-    databaseMethods.getChatRooms(Constants.myName).then((value){
-      setState(() {
-        chatRoomStream=value;
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context){
@@ -42,12 +24,22 @@ class _ProfileState extends State<Profile> {
         backgroundColor: Color.fromRGBO(245, 237, 223, 1),
       body: Column(
         children: [
-          Container(
-            alignment: Alignment.center,
-            height: MediaQuery.of(context).size.height*0.4,
-            child: Image.asset(
-                "assets/images/profilepic.png",
-              height: MediaQuery.of(context).size.height*0.2,
+          Padding(
+            padding: const EdgeInsets.only(top: 80),
+            child: Container(
+              alignment: Alignment.center,
+              height: MediaQuery.of(context).size.height*0.3,
+              child: Column(
+                children:[ Image.asset(
+                    "assets/images/profilepic.png",
+                  height: MediaQuery.of(context).size.height*0.2,
+                ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height*0.04,
+                  ),
+                  Text("Manas")
+                ]
+              ),
             ),
           ),
         Container(
