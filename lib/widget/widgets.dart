@@ -53,7 +53,7 @@ PreferredSizeWidget appBarMain2(BuildContext context){
       icon: Icon(Icons.arrow_back, color: Colors.black),
       onPressed:()=>
           WidgetsBinding.instance?.addPostFrameCallback((_) {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => ChatRoom()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => ChatRoom()));
           }),
     ),
     shape: RoundedRectangleBorder(

@@ -7,6 +7,7 @@ import 'package:meraki/helper/helperfunction.dart';
 import 'package:meraki/services/auth.dart';
 import 'package:meraki/services/database.dart';
 import 'package:meraki/widget/widgets.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import 'chatsRoomScreen.dart';
 
@@ -118,19 +119,38 @@ class _SignInState extends State<SignIn> {
                         alignment: Alignment.center,
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          child: Text(
-                            "Welcome Back!",
-                            style: welcomeback(),
-
+                          child: GradientText(
+                            'Welcome Back',
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.w600
+                            ),
+                            gradientType: GradientType.linear,
+                            gradientDirection: GradientDirection.ttb,
+                            radius: .4,
+                            colors: [
+                              Colors.green,
+                              Colors.black,
+                            ],
                           ),
                         )),
                         SizedBox(height: MediaQuery.of(context).size.height*0.02,),
                         Wrap(
+
                           children: [
-                            Container(
-                              child: Image.asset("assets/images/user.png",
-                                height: MediaQuery.of(context).size.height*0.06,
-                              ),
+                            Column(
+                                children:[
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height*0.01,
+                                  ),
+                                  Container(
+                                    child:
+                                    Image.asset("assets/images/user.png",
+                                      height:  MediaQuery.of(context).size.height*0.06,
+                                    ),
+
+                                  ),
+                                ]
                             ),
                             SizedBox(
                               width: MediaQuery.of(context).size.width*0.01,
@@ -153,44 +173,31 @@ class _SignInState extends State<SignIn> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                  filled: true,
+                                  //filled: true,
                                   hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
 
                               ),
                           ),
-                                decoration: BoxDecoration(
-                                  borderRadius : BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
-                                  ),
 
-                                border : Border.all(
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                              width: 1,
-                              ),
-                                  gradient : LinearGradient(
-                                      begin: Alignment(0.9759286642074585,-0.02407137304544449),
-                                      end: Alignment(0.024071374908089638,0.024071384221315384),
-                                      colors: [Color.fromRGBO(255, 255, 255, 1),Color.fromRGBO(255, 255, 255, 0)]
-                                  ),
-                                ),
                             ),
                           ]
                         ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height*0.02,
-                    ),
+
                 Wrap(
                   children: [
-                    Container(
+                    Column(
+                      children:[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height*0.01,
+                        ),
+                        Container(
+                        child:
+                        Image.asset("assets/images/pass.png",
+                          height:  MediaQuery.of(context).size.height*0.06,
+                        ),
 
-                      child:
-                      Image.asset("assets/images/pass.png",
-                        height:  MediaQuery.of(context).size.height*0.06,
                       ),
-
+                      ]
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width*0.01,
@@ -221,7 +228,7 @@ class _SignInState extends State<SignIn> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
-                            filled: true,
+                            //filled: true,
                             hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
 
                         ),
