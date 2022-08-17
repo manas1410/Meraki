@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meraki/Screens/login_screen.dart';
 
 import '../helper/authentication.dart';
 import '../helper/constants.dart';
@@ -37,7 +38,7 @@ class _ProfileState extends State<Profile> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height*0.04,
                   ),
-                  Text("Manas")
+                  Text(user)
                 ]
               ),
             ),

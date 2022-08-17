@@ -11,7 +11,7 @@ import 'package:meraki/widget/widgets.dart';
 import 'chatsRoomScreen.dart';
 
 
-
+String user = "";
 class SignIn extends StatefulWidget {
   //const SignIn({Key? key}) : super(key: key);
   final Function toggle;
@@ -40,6 +40,7 @@ class _SignInState extends State<SignIn> {
 
       setState(() {
         isLoading = true;
+        user = emailTextEditingController.text;
       });
       databaseMethods
           .getUserByUseremail(emailTextEditingController.text)
@@ -62,11 +63,14 @@ class _SignInState extends State<SignIn> {
           )
           );
         }
+        else{
+          invalid = "Wrong Email ID Or Password";
+        }
       });
     }
   }
   bool _isObscure = true;
-
+  String invalid = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +108,8 @@ class _SignInState extends State<SignIn> {
                               top: MediaQuery.of(context).size.height*0.01,
                               right: MediaQuery.of(context).size.width*0.04,
                               child:
-                              Image.asset("assets/images/cyber.png", height: 200,)),
+                              Image.asset("assets/images/cyber.png", height: 200,)
+                          ),
                         ],
                       ),
                     ),
@@ -126,6 +131,9 @@ class _SignInState extends State<SignIn> {
                               child: Image.asset("assets/images/user.png",
                                 height: MediaQuery.of(context).size.height*0.06,
                               ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width*0.01,
                             ),
                             Container(
                               width:  MediaQuery.of(context).size.width*0.83,
@@ -150,7 +158,26 @@ class _SignInState extends State<SignIn> {
 
                               ),
                           ),
-                            ),]
+                                decoration: BoxDecoration(
+                                  borderRadius : BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10),
+                                  ),
+
+                                border : Border.all(
+                            color: Color.fromRGBO(255, 255, 255, 1),
+                              width: 1,
+                              ),
+                                  gradient : LinearGradient(
+                                      begin: Alignment(0.9759286642074585,-0.02407137304544449),
+                                      end: Alignment(0.024071374908089638,0.024071384221315384),
+                                      colors: [Color.fromRGBO(255, 255, 255, 1),Color.fromRGBO(255, 255, 255, 0)]
+                                  ),
+                                ),
+                            ),
+                          ]
                         ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height*0.02,
@@ -158,9 +185,15 @@ class _SignInState extends State<SignIn> {
                 Wrap(
                   children: [
                     Container(
-                      child: Image.asset("assets/images/pass.png",
+
+                      child:
+                      Image.asset("assets/images/pass.png",
                         height:  MediaQuery.of(context).size.height*0.06,
                       ),
+
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width*0.01,
                     ),
                     Container(
                       width:  MediaQuery.of(context).size.width*0.83,
@@ -198,9 +231,11 @@ class _SignInState extends State<SignIn> {
                   ],
                 ),
               ),
+
               SizedBox(
                 height: 8,
               ),
+
               Container(
                   alignment: Alignment.centerRight,
                   child: Container(
@@ -214,6 +249,16 @@ class _SignInState extends State<SignIn> {
 
                     ),
                   )),
+              Container(
+                child: Text(
+                  invalid,
+                  style:TextStyle(
+                    color: Colors.red,
+                    fontSize: 13,
+                      fontWeight: FontWeight. bold,
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 15,
               ),
@@ -228,6 +273,18 @@ class _SignInState extends State<SignIn> {
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(38, 108, 5, 1),
                       borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromRGBO(38, 10, 5, 1).withOpacity(0.5),
+                          offset: const Offset(
+                            5.0,
+                            5.0,
+                          ),
+                          blurRadius: 10.0,
+                          spreadRadius: 2.0,
+                        ), //BoxShadow
+                         //BoxShadow
+                      ],
                     ),
                     child: Text(
                       "LOGIN",

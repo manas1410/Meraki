@@ -9,7 +9,7 @@ import '../widget/widgets.dart';
 import 'Conversation_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
+int count = 0;
 class ChatRoom extends StatefulWidget {
   @override
   _ChatRoomState createState() => _ChatRoomState();
@@ -20,10 +20,13 @@ class _ChatRoomState extends State<ChatRoom>{
   DatabaseMethods databaseMethods = DatabaseMethods();
   Stream? chatRoomStream;
 
+
   Widget chatRoomList(){
     return StreamBuilder(
       stream: chatRoomStream,
         builder: (context,AsyncSnapshot<dynamic> snapshot){
+        count = snapshot.data.size;
+
         return snapshot.hasData ? ListView.builder(
           itemCount: snapshot.data.size,
             itemBuilder: (context,index){
@@ -93,9 +96,11 @@ class _ChatRoomState extends State<ChatRoom>{
         onTap: () {
           Navigator.push(context, MaterialPageRoute(
               builder: (context) => createChatroomAndStartConversation(
-                  username: name+(Constants.interval.toString())
+                  username: name+(count.toString())
           )));
-          Constants.interval+=1;
+          //Constants.interval+=1;
+          print("count:");
+          print(count);
           print(Constants.interval);
         },
         child: Stack(
@@ -168,7 +173,7 @@ class ChatRoomsTile extends StatelessWidget {
                         child: Container(
                           child: Column(
                             children:[
-                              Text("UNTITLED"+(Constants.interval).toString(),
+                              Text(userName,
                                 style: TextStyle(
                                     fontSize: 25,
                                     color: Colors.black

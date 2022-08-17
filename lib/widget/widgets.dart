@@ -74,7 +74,7 @@ PreferredSizeWidget appBarMain1(BuildContext context){
     GestureDetector(
       onTap: (){
         authMethods.signOut();
-        Navigator.pushReplacement(context, MaterialPageRoute(
+        Navigator.push(context, MaterialPageRoute(
             builder: (context) => Profile()));
       },
       child:Image.asset("assets/images/profilepic.png",
