@@ -114,7 +114,7 @@ class _SignUpState extends State<SignUp> {
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           child: GradientText(
-                            'Lets Get Started',
+                            "Let's Get Started.",
                             style: TextStyle(
                                 fontSize: 30.0,
                                 fontWeight: FontWeight.w600
@@ -281,6 +281,18 @@ class _SignUpState extends State<SignUp> {
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(38, 108, 5, 1),
                       borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromRGBO(38, 108, 5, 1).withOpacity(0.5),
+                          offset: const Offset(
+                            4.0,
+                            4.0,
+                          ),
+                          blurRadius: 5.0,
+
+                        ), //BoxShadow
+                        //BoxShadow
+                      ],
                     ),
                     child: Text("Sign Up",
                         style: TextStyle(
@@ -288,6 +300,7 @@ class _SignUpState extends State<SignUp> {
                           fontFamily: 'Montserrat',
                           fontSize: 23,
                         )),
+
                   ),
                 ),
                 SizedBox(

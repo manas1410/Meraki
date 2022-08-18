@@ -277,13 +277,13 @@ class _SignInState extends State<SignIn> {
                     borderRadius: BorderRadius.circular(30),
                     boxShadow: [
                       BoxShadow(
-                        color: Color.fromRGBO(38, 10, 5, 1).withOpacity(0.5),
+                        color: Color.fromRGBO(38, 108, 5, 1).withOpacity(0.5),
                         offset: const Offset(
-                          5.0,
-                          5.0,
+                          4.0,
+                          4.0,
                         ),
-                        blurRadius: 10.0,
-                        spreadRadius: 2.0,
+                        blurRadius: 5.0,
+
                       ), //BoxShadow
                       //BoxShadow
                     ],
