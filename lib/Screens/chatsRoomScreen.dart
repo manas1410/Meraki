@@ -25,8 +25,10 @@ class _ChatRoomState extends State<ChatRoom>{
     return StreamBuilder(
       stream: chatRoomStream,
         builder: (context,AsyncSnapshot<dynamic> snapshot){
-        count = snapshot.data.size;
 
+        if (snapshot.hasData){
+          count = snapshot.data.size;
+        }
         return snapshot.hasData ? ListView.builder(
           itemCount: snapshot.data.size,
             itemBuilder: (context,index){
@@ -63,7 +65,7 @@ class _ChatRoomState extends State<ChatRoom>{
 
     if (username != Constants.myName){
       String chatRoomId = getChatRoomId(username,Constants.myName);
-      print(username);
+      //print(username);
       List<String> users = [username,Constants.myName];
       Map<String, dynamic> chatRoomMap = {
         "users" : users,
