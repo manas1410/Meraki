@@ -14,7 +14,7 @@ import 'chatsRoomScreen.dart';
 
 String user = "";
 class SignIn extends StatefulWidget {
-  //const SignIn({Key? key}) : super(key: key);
+
   final Function toggle;
   SignIn(this.toggle);
 
@@ -33,6 +33,10 @@ class _SignInState extends State<SignIn> {
 
   bool isLoading = false;
   QuerySnapshot? snapshotUserInfo;
+  forget(){
+    authMethods.resetPass(emailTextEditingController.text);
+    print("Manas");
+  }
   signIn() {
 
     if (formKey.currentState!.validate()) {
@@ -122,8 +126,8 @@ class _SignInState extends State<SignIn> {
                           child: GradientText(
                             'Welcome Back',
                             style: TextStyle(
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.w600
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.w600
                             ),
                             gradientType: GradientType.linear,
                             gradientDirection: GradientDirection.ttb,
@@ -134,31 +138,31 @@ class _SignInState extends State<SignIn> {
                             ],
                           ),
                         )),
-                        SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-                        Wrap(
+                    SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+                    Wrap(
 
-                          children: [
-                            Column(
-                                children:[
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height*0.01,
+                        children: [
+                          Column(
+                              children:[
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height*0.01,
+                                ),
+                                Container(
+                                  child:
+                                  Image.asset("assets/images/user.png",
+                                    height:  MediaQuery.of(context).size.height*0.06,
                                   ),
-                                  Container(
-                                    child:
-                                    Image.asset("assets/images/user.png",
-                                      height:  MediaQuery.of(context).size.height*0.06,
-                                    ),
 
-                                  ),
-                                ]
-                            ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width*0.01,
-                            ),
-                            Container(
-                              width:  MediaQuery.of(context).size.width*0.83,
-                              height: MediaQuery.of(context).size.height*0.09,
-                              child: TextFormField(
+                                ),
+                              ]
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width*0.01,
+                          ),
+                          Container(
+                            width:  MediaQuery.of(context).size.width*0.83,
+                            height: MediaQuery.of(context).size.height*0.09,
+                            child: TextFormField(
                               validator: (val) {
                                 return RegExp(
                                     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -170,71 +174,71 @@ class _SignInState extends State<SignIn> {
                               style: simpleTextFieldStyle(),
                               decoration: InputDecoration(
                                   hintText: "Email",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
                                   //filled: true,
                                   hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
 
                               ),
+                            ),
+
                           ),
-
-                            ),
-                          ]
-                        ),
-
-                Wrap(
-                  children: [
-                    Column(
-                      children:[
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height*0.01,
-                        ),
-                        Container(
-                        child:
-                        Image.asset("assets/images/pass.png",
-                          height:  MediaQuery.of(context).size.height*0.06,
-                        ),
-
-                      ),
-                      ]
+                        ]
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width*0.01,
-                    ),
-                    Container(
-                      width:  MediaQuery.of(context).size.width*0.83,
-                      height: MediaQuery.of(context).size.height*0.09,
-                      child: TextFormField(
-                        obscureText: _isObscure,
-                        validator: (val) {
-                          return (val!.length > 6)
-                              ? null
-                              : "Please provide password atleast 7 character";
-                        },
-                        controller: passwordTextEditingController,
-                        style: simpleTextFieldStyle(),
-                        decoration: InputDecoration(
-                            hintText: "Password",
-                            suffixIcon: IconButton(
-                                icon: Icon(
-                                    _isObscure ? Icons.visibility : Icons.visibility_off,
-                                color: Color.fromRGBO(245, 237, 223, 1),),
-                                onPressed: () {
-                                  setState(() {
-                                    _isObscure = !_isObscure;
-                                  });
-                                }),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            //filled: true,
-                            hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
 
-                        ),
-                      ),
-                    ),]
-        )
+                    Wrap(
+                        children: [
+                          Column(
+                              children:[
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height*0.01,
+                                ),
+                                Container(
+                                  child:
+                                  Image.asset("assets/images/pass.png",
+                                    height:  MediaQuery.of(context).size.height*0.06,
+                                  ),
+
+                                ),
+                              ]
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width*0.01,
+                          ),
+                          Container(
+                            width:  MediaQuery.of(context).size.width*0.83,
+                            height: MediaQuery.of(context).size.height*0.09,
+                            child: TextFormField(
+                              obscureText: _isObscure,
+                              validator: (val) {
+                                return (val!.length > 6)
+                                    ? null
+                                    : "Please provide password atleast 7 character";
+                              },
+                              controller: passwordTextEditingController,
+                              style: simpleTextFieldStyle(),
+                              decoration: InputDecoration(
+                                  hintText: "Password",
+                                  suffixIcon: IconButton(
+                                      icon: Icon(
+                                        _isObscure ? Icons.visibility : Icons.visibility_off,
+                                        color: Color.fromRGBO(245, 237, 223, 1),),
+                                      onPressed: () {
+                                        setState(() {
+                                          _isObscure = !_isObscure;
+                                        });
+                                      }),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  //filled: true,
+                                  hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
+
+                              ),
+                            ),
+                          ),]
+                    )
                   ],
                 ),
               ),
@@ -243,26 +247,31 @@ class _SignInState extends State<SignIn> {
                 height: 8,
               ),
 
-              Container(
-                  alignment: Alignment.centerRight,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Text(
-                      "Forget Password?",
-                      style: TextStyle(
-                        fontSize: 14,
-                          decoration: TextDecoration.underline
-                      ),
+              GestureDetector(
+                onTap: (){
+                  forget();
+                },
+                child: Container(
+                    alignment: Alignment.centerRight,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      child: Text(
+                        "Forget Password?",
+                        style: TextStyle(
+                            fontSize: 14,
+                            decoration: TextDecoration.underline
+                        ),
 
-                    ),
-                  )),
+                      ),
+                    )),
+              ),
               Container(
                 child: Text(
                   invalid,
                   style:TextStyle(
                     color: Colors.red,
                     fontSize: 13,
-                      fontWeight: FontWeight. bold,
+                    fontWeight: FontWeight. bold,
                   ),
                 ),
               ),
@@ -274,61 +283,41 @@ class _SignInState extends State<SignIn> {
                   signIn();
                 },
                 child: Container(
-                    alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width*0.40,
-                    padding: EdgeInsets.symmetric(vertical: 10,horizontal: 30),
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(38, 108, 5, 1),
-                      borderRadius: BorderRadius.circular(30),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(38, 10, 5, 1).withOpacity(0.5),
-                          offset: const Offset(
-                            5.0,
-                            5.0,
-                          ),
-                          blurRadius: 10.0,
-                          spreadRadius: 2.0,
-                        ), //BoxShadow
-                         //BoxShadow
-                      ],
-                    ),
-                    child: Text(
-                      "LOGIN",
-                      style: TextStyle(
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        fontFamily: 'Montserrat',
-                        fontSize: 23,
-                      ),
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width*0.40,
+                  padding: EdgeInsets.symmetric(vertical: 10,horizontal: 30),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(38, 108, 5, 1),
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(38, 10, 5, 1).withOpacity(0.5),
+                        offset: const Offset(
+                          5.0,
+                          5.0,
+                        ),
+                        blurRadius: 10.0,
+                        spreadRadius: 2.0,
+                      ), //BoxShadow
+                      //BoxShadow
+                    ],
+                  ),
+                  child: Text(
+                    "LOGIN",
+                    style: TextStyle(
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                      fontFamily: 'Montserrat',
+                      fontSize: 23,
                     ),
                   ),
+                ),
 
 
               ),
               SizedBox(
                 height: 8,
               ),
-              /*Container(
-                alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width*0.40,
-                padding: EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                  color:Color.fromRGBO(38, 108, 5, 1),
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: Row(
-                  children: [
-                    Image.asset("assets/images/google.png",
-                      height: 30,
-                    ),
-                    Text("  Sign In with Google",
-                        style: TextStyle(
-                          fontSize: 8,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ],
-                ),
-              ),*/
+
               SizedBox(
                 height: 8,
               ),
