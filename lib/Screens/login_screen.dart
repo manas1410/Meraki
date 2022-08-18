@@ -142,19 +142,12 @@ class _SignInState extends State<SignIn> {
                     Wrap(
 
                         children: [
-                          Column(
-                              children:[
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height*0.01,
-                                ),
-                                Container(
-                                  child:
-                                  Image.asset("assets/images/user.png",
-                                    height:  MediaQuery.of(context).size.height*0.06,
-                                  ),
-
-                                ),
-                              ]
+                          Container(
+                            child: Icon(Icons.person,color: Colors.grey,
+                              size: 45,
+                            ),
+                            height: MediaQuery.of(context).size.height*0.07,
+                            //width: MediaQuery.of(context).size.width*0.12
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width*0.01,
@@ -189,19 +182,12 @@ class _SignInState extends State<SignIn> {
 
                     Wrap(
                         children: [
-                          Column(
-                              children:[
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height*0.01,
-                                ),
-                                Container(
-                                  child:
-                                  Image.asset("assets/images/pass.png",
-                                    height:  MediaQuery.of(context).size.height*0.06,
-                                  ),
-
-                                ),
-                              ]
+                          Container(
+                            child: Icon(Icons.lock,color: Colors.grey,
+                              size: 45,
+                            ),
+                            height: MediaQuery.of(context).size.height*0.07,
+                            //width: MediaQuery.of(context).size.width*0.12
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width*0.01,

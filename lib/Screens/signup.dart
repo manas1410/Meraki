@@ -6,6 +6,7 @@ import 'package:meraki/helper/helperfunction.dart';
 import 'package:meraki/services/auth.dart';
 import 'package:meraki/services/database.dart';
 import 'package:meraki/widget/widgets.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import 'chatsRoomScreen.dart';
 
@@ -109,13 +110,25 @@ class _SignUpState extends State<SignUp> {
                 Container(
                     alignment: Alignment.center,
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      child: Text(
-                        "Let's get started.",
-                        style: welcomeback(),
-
-                      ),
-                    )),
+                        alignment: Alignment.center,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          child: GradientText(
+                            'Lets Get Started',
+                            style: TextStyle(
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.w600
+                            ),
+                            gradientType: GradientType.linear,
+                            gradientDirection: GradientDirection.ttb,
+                            radius: .4,
+                            colors: [
+                              Colors.green,
+                              Colors.black,
+                            ],
+                          ),
+                        ))
+                ),
                 SizedBox(height: MediaQuery.of(context).size.height*0.02,),
                 Form(
                   key: formKey,
@@ -124,9 +137,11 @@ class _SignUpState extends State<SignUp> {
                       Wrap(
                         children:[
                           Container(
-                            child: Image.asset("assets/images/user.png",
-                              height: MediaQuery.of(context).size.height*0.06,
+                            child: Icon(Icons.person,color: Colors.grey,
+                              size: 45,
                             ),
+                            height: MediaQuery.of(context).size.height*0.07,
+                            //width: MediaQuery.of(context).size.width*0.12
                           ),
                           Container(
                           width:  MediaQuery.of(context).size.width*0.83,
@@ -144,7 +159,7 @@ class _SignUpState extends State<SignUp> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                filled: true,
+
                                 hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
 
                             ),
@@ -152,16 +167,19 @@ class _SignUpState extends State<SignUp> {
                         ),
                         ]
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.001,),
                           Wrap(
                             children:[
+
                               Container(
-                                child: Icon(Icons.email_outlined,color: Colors.grey,
-                                  size: 40,
-                                ),
-                                  height: MediaQuery.of(context).size.height*0.09,
-                                  width: MediaQuery.of(context).size.width*0.12
-                                ),
+                                  child: Icon(Icons.email_outlined,color: Colors.grey,
+                                    size: 45,
+                                  ),
+                                  height: MediaQuery.of(context).size.height*0.07,
+                                  //width: MediaQuery.of(context).size.width*0.12
+                              ),
+
+
                               Container(
                               width:  MediaQuery.of(context).size.width*0.83,
                               height: MediaQuery.of(context).size.height*0.09,
@@ -180,21 +198,25 @@ class _SignUpState extends State<SignUp> {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),
-                                  filled: true,
+
                                   hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
 
                               ),
                             ),
                         ),]
                           ),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.001,),
                       Wrap(
                         children: [
-                          Container(
-                            child: Image.asset("assets/images/pass.png",
-                              height:  MediaQuery.of(context).size.height*0.06,
-                            ),
-                          ),
+
+                                Container(
+                                  child: Icon(Icons.lock,color: Colors.grey,
+                                    size: 45,
+                                  ),
+                                  height: MediaQuery.of(context).size.height*0.07,
+                                  //width: MediaQuery.of(context).size.width*0.12
+                                ),
+
                           Container(
                           width:  MediaQuery.of(context).size.width*0.83,
                           height: MediaQuery.of(context).size.height*0.09,
@@ -212,7 +234,7 @@ class _SignUpState extends State<SignUp> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                filled: true,
+
                                 hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1)),
                               suffixIcon: IconButton(
                             icon: Icon(
