@@ -59,7 +59,7 @@ class _ChatRoomState extends State<ChatRoom>{
       });
     });
   }
-  var name ="Untitled";
+
 
   createChatroomAndStartConversation({required String username}){
 
@@ -80,7 +80,7 @@ class _ChatRoomState extends State<ChatRoom>{
       });
     }
     else{
-      print("You Can;t send msg to yourself");
+      print("You Cant send msg to yourself");
     }
   }
   QuerySnapshot? searchSnapshot;
@@ -96,10 +96,8 @@ class _ChatRoomState extends State<ChatRoom>{
       floatingActionButton: GestureDetector(
 
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(
-              builder: (context) => createChatroomAndStartConversation(
-                  username: name+(count.toString())
-          )));
+          createChatroomAndStartConversation(
+              username: "Untitled"+(count.toString()));
           //Constants.interval+=1;
           print("count:");
           print(count);

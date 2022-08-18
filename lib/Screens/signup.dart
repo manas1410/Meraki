@@ -238,8 +238,9 @@ class _SignUpState extends State<SignUp> {
                                 hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1)),
                               suffixIcon: IconButton(
                             icon: Icon(
-                            _isObscure ? Icons.visibility : Icons.visibility_off,
-                              color: Color.fromRGBO(245, 237, 223, 1),),
+                            !_isObscure ? Icons.visibility : Icons.visibility_off,
+                              //color: Color.fromRGBO(245, 237, 223, 1),
+                                ),
                               onPressed: () {
                                 setState(() {
                                   _isObscure = !_isObscure;

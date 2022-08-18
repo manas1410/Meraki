@@ -51,9 +51,14 @@ class _SignInState extends State<SignIn> {
           .getUserByUseremail(emailTextEditingController.text)
           .then((val) {
         setState(() {
+          try{
           snapshotUserInfo = val;
           HelperFunctions.saveUserNameSharedPreference(
               snapshotUserInfo!.docs[0]['name']);
+          }
+          catch(error){
+            invalid = "Wrong Email ID Or Password";
+          }
           //print("${snapshotUserInfo!.docs[0]['name']} hello hellooo");
         });
       });
@@ -205,11 +210,13 @@ class _SignInState extends State<SignIn> {
                               controller: passwordTextEditingController,
                               style: simpleTextFieldStyle(),
                               decoration: InputDecoration(
+                                  //fillColor:Color.fromRGBO(245, 237, 223, 1),
                                   hintText: "Password",
                                   suffixIcon: IconButton(
                                       icon: Icon(
-                                        _isObscure ? Icons.visibility : Icons.visibility_off,
-                                        color: Color.fromRGBO(245, 237, 223, 1),),
+                                        !_isObscure ? Icons.visibility : Icons.visibility_off,
+                                        //color: Color.fromRGBO(245, 237, 223, 1),
+                                      ),
                                       onPressed: () {
                                         setState(() {
                                           _isObscure = !_isObscure;
@@ -222,6 +229,7 @@ class _SignInState extends State<SignIn> {
                                   hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
 
                               ),
+
                             ),
                           ),]
                     )
