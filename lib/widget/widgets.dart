@@ -53,7 +53,7 @@ PreferredSizeWidget appBarMain2(BuildContext context){
       icon: Icon(Icons.arrow_back, color: Colors.black),
       onPressed:()=>
           WidgetsBinding.instance?.addPostFrameCallback((_) {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => ChatRoom()));
+            Navigator.pop(context);
           }),
     ),
     shape: RoundedRectangleBorder(
@@ -73,7 +73,6 @@ PreferredSizeWidget appBarMain1(BuildContext context){
     title:
     GestureDetector(
       onTap: (){
-        authMethods.signOut();
         Navigator.push(context, MaterialPageRoute(
             builder: (context) => Profile()));
       },

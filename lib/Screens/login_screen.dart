@@ -68,13 +68,16 @@ class _SignInState extends State<SignIn> {
           .then((val) {
         if (val != null) {
           HelperFunctions.saveUserLoggedInSharedPreference(true);
-          Navigator.pushReplacement(
+          Navigator.push(
               context, MaterialPageRoute(builder: (context) => ChatRoom()
           )
           );
         }
         else{
-          invalid = "Wrong Email ID Or Password";
+          setState(() {
+            invalid = "Wrong Email ID Or Password";
+          });
+
         }
       });
     }

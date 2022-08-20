@@ -21,7 +21,8 @@ class ConversationScreen extends StatefulWidget {
 
 class _ConversationScreenState extends State<ConversationScreen> {
   late stt.SpeechToText _speech;
-  bool _isListening = false;
+  bool _isListening_red = false;
+  bool _isListening_green = false;
   String _text ="";
   String _text1 ="";
   DatabaseMethods databaseMethods = new DatabaseMethods();
@@ -35,7 +36,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
         .then((output)
         {
       setState((){
-        _text1=output.toString();
+        _text1= "Hindi: "+ output.toString();
       });
       print(_text1);
   });
@@ -68,20 +69,27 @@ class _ConversationScreenState extends State<ConversationScreen> {
     },
   );
   }
-  sendMessage(){
+  sendMessage_red(){
     if (_text.isNotEmpty){
-      Map<String,dynamic> messageMap = {
-        "message": _text,
-        "sendBy" : Constants.myName,
-        "time" : DateTime.now().millisecondsSinceEpoch
-      };
-      databaseMethods.addConversationMessages(widget.chatRoomId, messageMap);
+
       Map<String,dynamic> messageMap1 = {
-        "message": _text1,
+        "message": "English: "+ _text+"\n"+_text1,
         "sendBy" : "Untitled0",
         "time" : DateTime.now().millisecondsSinceEpoch
       };
       databaseMethods.addConversationMessages(widget.chatRoomId, messageMap1);
+      messageController.text ="";
+    }
+  }
+  sendMessage_green(){
+    if (_text.isNotEmpty){
+      Map<String,dynamic> messageMap = {
+        "message": "English: "+ _text+"\n" + _text1,
+        "sendBy" : Constants.myName,
+        "time" : DateTime.now().millisecondsSinceEpoch
+      };
+      databaseMethods.addConversationMessages(widget.chatRoomId, messageMap);
+
       messageController.text ="";
     }
   }
@@ -108,7 +116,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AvatarGlow(
-              animate: _isListening,
+              animate: _isListening_red,
               glowColor: Theme.of(context).primaryColor,
               endRadius: 75.0,
               duration: const Duration(milliseconds: 2000),
@@ -116,14 +124,14 @@ class _ConversationScreenState extends State<ConversationScreen> {
               repeat: true,
               child: FloatingActionButton(
                 backgroundColor: Colors.red,
-                onPressed: _listen,
-                child: Icon(_isListening ? Icons.mic : Icons.mic_none),
+                onPressed: _listen_red,
+                child: Icon(_isListening_red ? Icons.mic : Icons.mic_none),
                 heroTag: "fab1",
               ),
 
             ),
             AvatarGlow(
-              animate: _isListening,
+              animate: _isListening_green,
               glowColor: Theme.of(context).primaryColor,
               endRadius: 75.0,
               duration: const Duration(milliseconds: 2000),
@@ -131,8 +139,8 @@ class _ConversationScreenState extends State<ConversationScreen> {
               repeat: true,
               child: FloatingActionButton(
                 backgroundColor: Colors.green,
-                onPressed: _listen,
-                child: Icon(_isListening ? Icons.mic : Icons.mic_none),
+                onPressed: _listen_green,
+                child: Icon(_isListening_green ? Icons.mic : Icons.mic_none),
                 heroTag: "fab2",
               ),
 
@@ -199,14 +207,51 @@ class _ConversationScreenState extends State<ConversationScreen> {
       ),
     );
   }
-  void _listen() async {
-    if (!_isListening) {
+  void _listen_red() async {
+    if (!_isListening_red) {
       bool available = await _speech.initialize(
         onStatus: (val) => print('onStatus: $val'),
         onError: (val) => print('onError: $val'),
       );
       if (available) {
-        setState(() => _isListening = true);
+        _text = "";
+        _text1 = "";
+        setState(() => _isListening_red = true);
+        _speech.listen(
+          onResult: (val) => setState(() {
+
+            _text = val.recognizedWords;
+            /*final translation =
+               _text.translate(from: 'auto', to: 'hi');
+              _text1 = translation.text;
+              print("manaas");
+              print(_text1);
+              print(translation.text);*/
+
+            trans();
+
+          }
+          ),
+
+        );
+
+      }
+    } else {
+      setState(() => _isListening_red = false);
+      _speech.stop();
+      sendMessage_red();
+    }
+  }
+  void _listen_green() async {
+    if (!_isListening_green) {
+      bool available = await _speech.initialize(
+        onStatus: (val) => print('onStatus: $val'),
+        onError: (val) => print('onError: $val'),
+      );
+      if (available) {
+        _text = "";
+        _text1 = "";
+        setState(() => _isListening_green = true);
         _speech.listen(
           onResult: (val) => setState(() {
             _text = val.recognizedWords;
@@ -226,9 +271,9 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
       }
     } else {
-      setState(() => _isListening = false);
+      setState(() => _isListening_green = false);
       _speech.stop();
-      sendMessage();
+      sendMessage_green();
     }
   }
 }
