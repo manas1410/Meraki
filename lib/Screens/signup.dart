@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:meraki/Screens/profile.dart';
+import 'package:meraki/helper/constants.dart';
 import 'package:meraki/helper/helperfunction.dart';
 import 'package:meraki/services/auth.dart';
 import 'package:meraki/services/database.dart';
@@ -21,6 +23,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool isLoading = false;
+  String invalid="";
 
   AuthMethods authMethods = new AuthMethods();
   DatabaseMethods databaseMethods = new DatabaseMethods();
@@ -38,10 +41,12 @@ class _SignUpState extends State<SignUp> {
       setState(() {
         isLoading = true;
       });
+      try{
       authMethods
           .signUpwithEmailAndPassword(emailTextEditingController.text,
           passwordTextEditingController.text)
           .then((value) {
+            Constants.email=emailTextEditingController.text;
         //print("${value.uid}");
 
         Map<String, String> userInfoMap = {
@@ -58,8 +63,16 @@ class _SignUpState extends State<SignUp> {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => ChatRoom()
         ));
-      });
+      }
+      );
+      }
+      catch(signUpError) {
+        if(signUpError is PlatformException) {
+          invalid ="Email Id Already In Use";
+        }
+      }
     }
+
   }
   bool _isObscure = true;
   @override
@@ -257,16 +270,17 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(
                   height: 4,
                 ),
-                /*Container(
-                    alignment: Alignment.centerRight,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 4),
-                      child: Text(
-                        "Forget Password?",
-                        style: mediumTextFieldStyle(),
-                      ),
-                    )),*/
+                Container(
+                  child: Text(
+                    invalid,
+                    style:TextStyle(
+                      color: Colors.red,
+                      fontSize: 13,
+                      fontWeight: FontWeight. bold,
+                    ),
+                  ),
+                ),
+
                 SizedBox(
                   height: MediaQuery.of(context).size.width*0.05,
                 ),

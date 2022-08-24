@@ -1,6 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-//import 'voice.dart';
 import 'helper/authentication.dart';
 import 'helper/helperfunction.dart';
 
@@ -43,7 +43,54 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.blue,
       ),
-      home: Authenticate(),
+      home: MyHomePage(),
+
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 3),
+            ()=>Navigator.pushReplacement(context,
+            MaterialPageRoute(builder:
+                (context) =>
+                    Authenticate()
+            )
+        )
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        color: Colors.white,
+        child:
+        Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children:[
+          Image.asset("assets/images/icon.png",
+            height: MediaQuery.of(context).size.height*0.23,
+            width: MediaQuery.of(context).size.width*0.5,
+            fit: BoxFit.fill
+        ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height*0.05,
+          ),
+          Image.asset("assets/images/Translata1.png",
+              height: MediaQuery.of(context).size.height*0.05,
+              width: MediaQuery.of(context).size.width*0.70,
+              fit: BoxFit.fill
+          )
+
+        ]
+    )
     );
   }
 }

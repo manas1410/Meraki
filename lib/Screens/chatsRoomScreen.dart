@@ -139,7 +139,8 @@ class ChatRoomsTile extends StatelessWidget {
         Navigator.push(context,
         MaterialPageRoute(builder:
         (context) => ConversationScreen(chatRoomId)
-        ));
+        )
+        );
       },
               child: Column(
                 children:[

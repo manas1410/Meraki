@@ -112,9 +112,9 @@ class _ConversationScreenState extends State<ConversationScreen> {
       appBar: appBarMain2(context),
         backgroundColor: Color.fromRGBO(245, 237, 223, 1),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+      floatingActionButton: Wrap(
+        direction: Axis.horizontal,
+          children: <Widget> [
             AvatarGlow(
               animate: _isListening_red,
               glowColor: Theme.of(context).primaryColor,
@@ -143,7 +143,6 @@ class _ConversationScreenState extends State<ConversationScreen> {
                 child: Icon(_isListening_green ? Icons.mic : Icons.mic_none),
                 heroTag: "fab2",
               ),
-
             ),
           ]
       ),

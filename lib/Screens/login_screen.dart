@@ -9,6 +9,7 @@ import 'package:meraki/services/database.dart';
 import 'package:meraki/widget/widgets.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
+import '../helper/constants.dart';
 import 'chatsRoomScreen.dart';
 
 
@@ -66,9 +67,11 @@ class _SignInState extends State<SignIn> {
           .signInWithEmailAndPassword(emailTextEditingController.text,
           passwordTextEditingController.text)
           .then((val) {
+
         if (val != null) {
+          Constants.email=emailTextEditingController.text;
           HelperFunctions.saveUserLoggedInSharedPreference(true);
-          Navigator.push(
+          Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => ChatRoom()
           )
           );

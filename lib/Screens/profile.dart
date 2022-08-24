@@ -38,7 +38,7 @@ class _ProfileState extends State<Profile> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height*0.04,
                   ),
-                  Text(user)
+                  Text(Constants.email)
                 ]
               ),
             ),
