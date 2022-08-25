@@ -3,4 +3,5 @@ class Constants{
   static int interval = 0;
   static String email="";
   static String language="hi";
+  static String converted_text = "";
 }

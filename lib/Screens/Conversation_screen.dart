@@ -2,6 +2,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:highlight_text/highlight_text.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import '../helper/constants.dart';
@@ -30,7 +31,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
   GoogleTranslator translator = new GoogleTranslator();
   Map<String, String> language = {'English':'en',  "Hindi":'hi', 'Punjabi':'pa'};
 
-
+  final FlutterTts flutterTts = FlutterTts();
 
   void trans()
   {
@@ -39,6 +40,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
         {
       setState((){
         _text1= Constants.language.toString()+": "+ output.toString();
+        Constants.converted_text = output.toString();
       });
       print(_text1);
   });
@@ -46,6 +48,12 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
   Stream? chatMessageStream;
   //QuerySnapshot? snapshot;
+  text_to_speech(String text0) async {
+    await flutterTts.setLanguage("en-US");
+    await flutterTts.setPitch(1);
+    await flutterTts.speak(text0);
+    print(text0);
+  }
 
 
   Widget ChatMessageList(){
@@ -184,13 +192,13 @@ class _ConversationScreenState extends State<ConversationScreen> {
       //floatingActionButton: ,
       //appBar: appBarMain2(context),
       body: Container(
-    decoration: BoxDecoration(
+    /*decoration: BoxDecoration(
     image: DecorationImage(
     image: AssetImage("assets/images/bg3.jpg"),
     opacity: 0.1,
     fit: BoxFit.cover,
     ),
-    ),
+    ),*/
         child: Padding(
           padding: EdgeInsets.only(top: MediaQuery.of(context).size.width*0.14,),
           child: Stack(
@@ -245,7 +253,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
                           });
                         },
-                        items: <String>['hi','en', 'pa','gu','kn','ml','or','pa','ta','te','ur']
+                        items: <String>['hi','en', 'pa','gu','kn','ml','or','ta','te','ur']
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -395,52 +403,90 @@ class _ConversationScreenState extends State<ConversationScreen> {
 }
 class MessageTile extends StatelessWidget {
   //const MessageTile({Key? key}) : super(key: key);
+  final _ConversationScreenState obj = new _ConversationScreenState();
   final String message;
   final bool isSendByMe;
   MessageTile(this.message,this.isSendByMe);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: isSendByMe ? 0:24 ,
-          right: isSendByMe ? 24:0),
-      margin: EdgeInsets.symmetric(vertical: 4),
-      width: MediaQuery.of(context).size.width,
-      alignment: isSendByMe ? Alignment.centerRight: Alignment.centerLeft,
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 24,vertical: 16),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: isSendByMe?
-            [
-               Color.fromRGBO(193, 205, 169, 1),
-              Color.fromRGBO(193, 205, 169, 1)
+    return
+        Container(
+          padding: EdgeInsets.only(left: isSendByMe ? 0:24 ,
+              right: isSendByMe ? 24:0),
+          margin: EdgeInsets.symmetric(vertical: 4),
+          //width: MediaQuery.of(context).size.width,
+          alignment: isSendByMe ? Alignment.centerRight: Alignment.centerLeft,
+          child: Stack(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  obj.text_to_speech(Constants.converted_text);
+                },
+                child: Container(
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width*0.1,
+                    padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(38, 108, 5, 1),
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromRGBO(38, 108, 5, 1).withOpacity(0.5),
+                          offset: const Offset(
+                            4.0,
+                            4.0,
+                          ),
+                          blurRadius: 5.0,
 
-            ]:[
-          Color.fromRGBO(239, 178, 167, 1),
-            Color.fromRGBO(239, 178, 167, 1)
+                        ), //BoxShadow
+                        //BoxShadow
+                      ],
+                    ),
+                    child: Image(image: AssetImage('assets/images/img.png'),height: 10,)
+                ),
 
-              ]
-          ),
-          borderRadius: isSendByMe?
-          BorderRadius.only(
-            topLeft: Radius.circular(23),
-            topRight: Radius.circular(23),
-            bottomLeft: Radius.circular(23)
-          ):
-          BorderRadius.only(
-              topLeft: Radius.circular(23),
-              topRight: Radius.circular(23),
-              bottomRight: Radius.circular(23)
+
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 24,vertical: 16),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: isSendByMe?
+                    [
+                       Color.fromRGBO(193, 205, 169, 1),
+                      Color.fromRGBO(193, 205, 169, 1)
+
+                    ]:[
+                  Color.fromRGBO(239, 178, 167, 1),
+                    Color.fromRGBO(239, 178, 167, 1)
+
+                      ]
+                  ),
+                  borderRadius: isSendByMe?
+                  BorderRadius.only(
+                    topLeft: Radius.circular(23),
+                    topRight: Radius.circular(23),
+                    bottomLeft: Radius.circular(23)
+                  ):
+                  BorderRadius.only(
+                      topLeft: Radius.circular(23),
+                      topRight: Radius.circular(23),
+                      bottomRight: Radius.circular(23)
+                  )
+
+                ),
+                child:
+                    Text(message,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16
+                      )
+                    ),
+                ),
+
+            ],
           )
-
-        ),
-        child:Text(message,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 16
-          )),
-      ),
-    );
+        );
   }
 }
 

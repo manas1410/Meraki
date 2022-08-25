@@ -19,6 +19,8 @@ class _ChatRoomState extends State<ChatRoom>{
   AuthMethods authMethods =new AuthMethods();
   DatabaseMethods databaseMethods = DatabaseMethods();
   Stream? chatRoomStream;
+  var valueText = "";
+  TextEditingController _textFieldController = new TextEditingController();
 
 
   Widget chatRoomList(){
@@ -93,8 +95,49 @@ class _ChatRoomState extends State<ChatRoom>{
           chatRoomList(),
       floatingActionButton: GestureDetector(
         onTap: () {
-          createChatroomAndStartConversation(
-              username: "Untitled"+(count.toString()));
+          showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text('TextField in Dialog'),
+                  content: TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        valueText = value;
+                      });
+                    },
+                    controller: _textFieldController,
+                    decoration: InputDecoration(hintText: "Text Field in Dialog"),
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      //color: Colors.red,
+                      //textColor: Colors.white,
+                      child: Text('CANCEL'),
+                      onPressed: () {
+                        setState(() {
+                          Navigator.pop(context);
+                        });
+                      },
+                    ),
+                    TextButton(
+                      //color: Colors.green,
+                      //textColor: Colors.white,
+                      child: Text('OK'),
+                      onPressed: () {
+                        setState(() {
+                          //codeDialog = valueText;
+                          createChatroomAndStartConversation(
+                              username: _textFieldController.text);
+                        });
+                      },
+                    ),
+                  ],
+                );
+              });
+
+
+
           //Constants.interval+=1;
           print("count:");
           print(count);
