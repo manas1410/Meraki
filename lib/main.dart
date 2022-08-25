@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'Screens/chatsRoomScreen.dart';
 import 'helper/authentication.dart';
 import 'helper/helperfunction.dart';
 
@@ -43,7 +44,11 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: userIsLoggedIn != null
+          ? userIsLoggedIn!
+          ? ChatRoom()
+          : Authenticate()
+          : Authenticate(),
 
     );
   }

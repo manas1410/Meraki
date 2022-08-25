@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:meraki/Screens/chatsRoomScreen.dart';
 import 'package:meraki/Screens/profile.dart';
+import 'package:meraki/helper/constants.dart';
 
 import '../services/auth.dart';
 
@@ -44,6 +45,7 @@ TextStyle mediumTextFieldStyle(){
       fontFamily: 'Montserrat'
   );
 }
+/*
 PreferredSizeWidget appBarMain2(BuildContext context){
   AuthMethods authMethods =new AuthMethods();
   return AppBar(
@@ -63,9 +65,10 @@ PreferredSizeWidget appBarMain2(BuildContext context){
     ),
 
   );
-}
+}*/
 
 PreferredSizeWidget appBarMain1(BuildContext context){
+
   AuthMethods authMethods =new AuthMethods();
   return AppBar(
     backgroundColor:Color.fromRGBO(120, 76, 66, 1),
@@ -76,9 +79,15 @@ PreferredSizeWidget appBarMain1(BuildContext context){
         Navigator.push(context, MaterialPageRoute(
             builder: (context) => Profile()));
       },
-      child:Image.asset("assets/images/profilepic.png",
-        height: MediaQuery.of(context).size.height*0.05,
+      child:Row(
+        children: [
+          Image.asset("assets/images/profilepic.png",
+            height: MediaQuery.of(context).size.height*0.05,
     ),
+
+        ],
+
+      ),
     ),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
@@ -89,3 +98,60 @@ PreferredSizeWidget appBarMain1(BuildContext context){
   );
 }
 
+class appBarMain2 extends StatefulWidget implements PreferredSizeWidget{
+
+  appBarMain2_1 createState()=> appBarMain2_1();
+
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => throw UnimplementedError();
+}
+
+class appBarMain2_1 extends State<appBarMain2>{
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor:Color.fromRGBO(120, 76, 66, 1),
+      toolbarHeight: 60,
+      title:
+      GestureDetector(
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(
+              builder: (context) => Profile()));
+        },
+        child:Column(
+          children: [
+          Image.asset("assets/images/profilepic.png",
+          height: MediaQuery.of(context).size.height*0.05,
+        ),
+        DropdownButton<String>(
+          value: Constants.language,
+          icon: const Icon(Icons.arrow_downward),
+          elevation: 16,
+          style: const TextStyle(color: Colors.deepPurple),
+          underline: Container(
+            height: 2,
+            color: Colors.deepPurpleAccent,
+          ),
+          onChanged: (String? newValue) {
+            setState(() {
+              Constants.language = newValue!;
+            });
+          },
+          items: <String>['One', 'Two', 'Free', 'Four']
+              .map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        )
+        ],
+
+      ),
+    ));
+
+  }
+  //Your code here
+}

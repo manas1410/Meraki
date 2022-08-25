@@ -91,10 +91,7 @@ class _ChatRoomState extends State<ChatRoom>{
       appBar:appBarMain1(context),
       body:
           chatRoomList(),
-
-
       floatingActionButton: GestureDetector(
-
         onTap: () {
           createChatroomAndStartConversation(
               username: "Untitled"+(count.toString()));
@@ -198,9 +195,6 @@ class ChatRoomsTile extends StatelessWidget {
                             )
                           ),
                         ),
-
-
-
 
         ],
       ),
