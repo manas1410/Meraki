@@ -4,4 +4,5 @@ class Constants{
   static String email="";
   static String language="hi";
   static String converted_text = "";
+  static double confidence = 0.0;
 }

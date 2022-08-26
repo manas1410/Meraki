@@ -203,70 +203,75 @@ class _ConversationScreenState extends State<ConversationScreen> {
           padding: EdgeInsets.only(top: MediaQuery.of(context).size.width*0.14,),
           child: Stack(
             children: [
-              Row(
+              Column(
                 children: [
-                  SizedBox(width: MediaQuery.of(context).size.width*0.02,),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 50,vertical: 18),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            colors:
-                            [
-                              Colors.red,
-                              Colors.red
+                  Row(
+                    children: [
+                      SizedBox(width: MediaQuery.of(context).size.width*0.02,),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 50,vertical: 18),
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                colors:
+                                [
+                                  Colors.red,
+                                  Colors.red
 
-                            ]
+                                ]
+                            ),
+                          borderRadius: BorderRadius.all(Radius.circular(10),)
                         ),
-                      borderRadius: BorderRadius.all(Radius.circular(10),)
-                    ),
-                    child:Text("English")
+                        child:Text("English")
 
-                  ),
-
-                  SizedBox(width: MediaQuery.of(context).size.width*0.15,),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 46,vertical: 3),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            colors:
-                            [
-                              Color.fromRGBO(193, 205, 169, 1),
-                              Color.fromRGBO(193, 205, 169, 1)
-
-                            ]
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(10),)
-                    ),
-                    child:DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                        value: Constants.language,
-                        icon: const Icon(Icons.arrow_downward),
-                        elevation: 16,
-                        style: const TextStyle(color: Colors.deepPurple,fontSize: 16),
-                        underline: Container(
-                          height: 2,
-                          color: Colors.deepPurpleAccent,
-                        ),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            Constants.language = newValue!;
-
-                          });
-                        },
-                        items: <String>['hi','en', 'pa','gu','kn','ml','ta','te','ur']
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }
-                        ).toList(),
                       ),
-                    )
+
+                      SizedBox(width: MediaQuery.of(context).size.width*0.15,),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 46,vertical: 3),
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                colors:
+                                [
+                                  Color.fromRGBO(193, 205, 169, 1),
+                                  Color.fromRGBO(193, 205, 169, 1)
+
+                                ]
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(10),)
+                        ),
+                        child:DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: Constants.language,
+                            icon: const Icon(Icons.arrow_downward),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.deepPurple,fontSize: 16),
+                            underline: Container(
+                              height: 2,
+                              color: Colors.deepPurpleAccent,
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                Constants.language = newValue!;
+
+                              });
+                            },
+                            items: <String>['hi','en', 'pa','gu','kn','ml','ta','te','ur']
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }
+                            ).toList(),
+                          ),
+                        )
+                      ),
+
+                    ],
+
                   ),
-
+                  Text("Accuracy: "+((Constants.confidence)*100).toString()+"%")
                 ],
-
               ),
               SizedBox(height: MediaQuery.of(context).size.height*0.1,),
               Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.1,
@@ -332,6 +337,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
     );
   }
   void _listen_red() async {
+    
     if (!_isListening_red) {
       bool available = await _speech.initialize(
         onStatus: (val) => print('onStatus: $val'),
@@ -351,6 +357,12 @@ class _ConversationScreenState extends State<ConversationScreen> {
               print("manaas");
               print(_text1);
               print(translation.text);*/
+            if (val.hasConfidenceRating && val.confidence > 0) {
+              Constants.confidence = val.confidence;
+              print("vvjhvjhvjvhjvhjvjhvjh");
+              print(Constants.confidence);
+            }
+
 
             trans();
 
@@ -418,9 +430,8 @@ class MessageTile extends StatelessWidget {
           alignment: isSendByMe ? Alignment.centerRight: Alignment.centerLeft,
           child: Row(
             children: [
-              SizedBox(width: 50,child: Expanded(
-                flex:1,
-                child: Row(
+              SizedBox(width: 50,child:
+              Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -440,7 +451,8 @@ class MessageTile extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),),
+
+              ),
               Expanded(
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 24,vertical: 16),
