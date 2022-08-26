@@ -253,7 +253,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
                           });
                         },
-                        items: <String>['hi','en', 'pa','gu','kn','ml','or','ta','te','ur']
+                        items: <String>['hi','en', 'pa','gu','kn','ml','ta','te','ur']
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -270,7 +270,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height*0.1,),
               Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.1,
-                  bottom: MediaQuery.of(context).size.height*0.1,
+                  bottom: MediaQuery.of(context).size.height*0.16,
                   //left: MediaQuery.of(context).size.width*0.03,
                 //right: MediaQuery.of(context).size.width*0.03
               ),
@@ -416,73 +416,69 @@ class MessageTile extends StatelessWidget {
           margin: EdgeInsets.symmetric(vertical: 4),
           //width: MediaQuery.of(context).size.width,
           alignment: isSendByMe ? Alignment.centerRight: Alignment.centerLeft,
-          child: Stack(
+          child: Row(
             children: [
-              GestureDetector(
-                onTap: () {
-                  obj.text_to_speech(Constants.converted_text);
-                },
-                child: Container(
-                    alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width*0.1,
-                    padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(38, 108, 5, 1),
-                      borderRadius: BorderRadius.circular(30),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(38, 108, 5, 1).withOpacity(0.5),
-                          offset: const Offset(
-                            4.0,
-                            4.0,
-                          ),
-                          blurRadius: 5.0,
+              SizedBox(width: 50,child: Expanded(
+                flex:1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        obj.text_to_speech(Constants.converted_text);
+                      },
+                      child: Container(
+                          alignment: Alignment.center,
+                          width: MediaQuery.of(context).size.width*0.1,
+                          //padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
 
-                        ), //BoxShadow
-                        //BoxShadow
-                      ],
+                          child: Image(image: AssetImage('assets/images/img.png'),height: 50,)
+                      ),
+
+
                     ),
-                    child: Image(image: AssetImage('assets/images/img.png'),height: 10,)
+                  ],
                 ),
+              ),),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 24,vertical: 16),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: isSendByMe?
+                      [
+                         Color.fromRGBO(193, 205, 169, 1),
+                        Color.fromRGBO(193, 205, 169, 1)
 
+                      ]:[
+                    Color.fromRGBO(239, 178, 167, 1),
+                      Color.fromRGBO(239, 178, 167, 1)
 
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 24,vertical: 16),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: isSendByMe?
-                    [
-                       Color.fromRGBO(193, 205, 169, 1),
-                      Color.fromRGBO(193, 205, 169, 1)
-
-                    ]:[
-                  Color.fromRGBO(239, 178, 167, 1),
-                    Color.fromRGBO(239, 178, 167, 1)
-
-                      ]
-                  ),
-                  borderRadius: isSendByMe?
-                  BorderRadius.only(
-                    topLeft: Radius.circular(23),
-                    topRight: Radius.circular(23),
-                    bottomLeft: Radius.circular(23)
-                  ):
-                  BorderRadius.only(
+                        ]
+                    ),
+                    borderRadius: isSendByMe?
+                    BorderRadius.only(
                       topLeft: Radius.circular(23),
                       topRight: Radius.circular(23),
-                      bottomRight: Radius.circular(23)
-                  )
+                      bottomLeft: Radius.circular(23)
+                    ):
+                    BorderRadius.only(
+                        topLeft: Radius.circular(23),
+                        topRight: Radius.circular(23),
+                        bottomRight: Radius.circular(23)
+                    )
 
-                ),
-                child:
-                    Text(message,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16
-                      )
-                    ),
-                ),
+                  ),
+                  child:
+                      Text(message,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16
+                        )
+                      ),
+                  ),
+              ),
 
             ],
           )
