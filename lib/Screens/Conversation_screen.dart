@@ -227,7 +227,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
                       SizedBox(width: MediaQuery.of(context).size.width*0.15,),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 46,vertical: 3),
+                        padding: EdgeInsets.symmetric(horizontal: 33,vertical: 3),
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
                                 colors:
@@ -255,14 +255,18 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
                               });
                             },
-                            items: <String>['hi','en', 'pa','gu','kn','ml','ta','te','ur']
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
+                            items: language
+                                .map((string, value) {
+                              return MapEntry(
+                                string,
+                                DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(string),
+                                ),
                               );
-                            }
-                            ).toList(),
+                            })
+                                .values
+                                .toList(),
                           ),
                         )
                       ),
