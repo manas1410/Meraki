@@ -23,8 +23,8 @@ TextStyle simpleTextFieldStyle(){
 
 TextStyle welcomeback(){
   return TextStyle(
-    fontSize: 30,
-    fontFamily: 'Montserrat',
+      fontSize: 30,
+      fontFamily: 'Montserrat',
       fontWeight: FontWeight.w500,
       foreground: Paint()..shader = LinearGradient(
         begin: Alignment.topCenter,
@@ -83,7 +83,7 @@ PreferredSizeWidget appBarMain1(BuildContext context){
         children: [
           Image.asset("assets/images/profilepic.png",
             height: MediaQuery.of(context).size.height*0.05,
-    ),
+          ),
 
         ],
 
@@ -112,46 +112,46 @@ class appBarMain2_1 extends State<appBarMain2>{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor:Color.fromRGBO(120, 76, 66, 1),
-      toolbarHeight: 60,
-      title:
-      GestureDetector(
-        onTap: (){
-          Navigator.push(context, MaterialPageRoute(
-              builder: (context) => Profile()));
-        },
-        child:Column(
-          children: [
-          Image.asset("assets/images/profilepic.png",
-          height: MediaQuery.of(context).size.height*0.05,
-        ),
-        DropdownButton<String>(
-          value: Constants.language,
-          icon: const Icon(Icons.arrow_downward),
-          elevation: 16,
-          style: const TextStyle(color: Colors.deepPurple),
-          underline: Container(
-            height: 2,
-            color: Colors.deepPurpleAccent,
-          ),
-          onChanged: (String? newValue) {
-            setState(() {
-              Constants.language = newValue!;
-            });
+        backgroundColor:Color.fromRGBO(120, 76, 66, 1),
+        toolbarHeight: 60,
+        title:
+        GestureDetector(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(
+                builder: (context) => Profile()));
           },
-          items: <String>['One', 'Two', 'Free', 'Four']
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
-        )
-        ],
+          child:Column(
+            children: [
+              Image.asset("assets/images/profilepic.png",
+                height: MediaQuery.of(context).size.height*0.05,
+              ),
+              DropdownButton<String>(
+                value: Constants.language,
+                icon: const Icon(Icons.arrow_downward),
+                elevation: 16,
+                style: const TextStyle(color: Colors.deepPurple),
+                underline: Container(
+                  height: 2,
+                  color: Colors.deepPurpleAccent,
+                ),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    Constants.language = newValue!;
+                  });
+                },
+                items: <String>['One', 'Two', 'Free', 'Four']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              )
+            ],
 
-      ),
-    ));
+          ),
+        ));
 
   }
-  //Your code here
+//Your code here
 }

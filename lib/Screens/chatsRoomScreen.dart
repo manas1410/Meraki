@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-//import 'package:meraki/voice.dart';
 import '../helper/constants.dart';
 import '../helper/helperfunction.dart';
 import '../services/auth.dart';
@@ -262,7 +260,7 @@ class ChatRoomsTile extends StatelessWidget {
           Image.asset(
             "assets/images/line_1.png",
             height: MediaQuery.of(context).size.height * 0.009,
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width * 0.94,
             //fit: BoxFit.fill
           ),
         ]));

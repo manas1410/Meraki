@@ -53,9 +53,9 @@ class _SignInState extends State<SignIn> {
           .then((val) {
         setState(() {
           try{
-          snapshotUserInfo = val;
-          HelperFunctions.saveUserNameSharedPreference(
-              snapshotUserInfo!.docs[0]['name']);
+            snapshotUserInfo = val;
+            HelperFunctions.saveUserNameSharedPreference(
+                snapshotUserInfo!.docs[0]['name']);
           }
           catch(error){
             invalid = "Wrong Email ID Or Password";
@@ -216,7 +216,7 @@ class _SignInState extends State<SignIn> {
                               controller: passwordTextEditingController,
                               style: simpleTextFieldStyle(),
                               decoration: InputDecoration(
-                                  //fillColor:Color.fromRGBO(245, 237, 223, 1),
+                                //fillColor:Color.fromRGBO(245, 237, 223, 1),
                                   hintText: "Password",
                                   suffixIcon: IconButton(
                                       icon: Icon(

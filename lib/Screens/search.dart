@@ -20,22 +20,22 @@ class _SearchScreenState extends State<SearchScreen>{
   initiateSearch(){
     databaseMethods.getUserByUsername(searchTextEditingController.text)
         .then((val){
-          setState(() {
-            searchSnapshot = val;
-          });
+      setState(() {
+        searchSnapshot = val;
+      });
     }
     );
   }
 
   Widget searchList(){
     return searchSnapshot!=null ?ListView.builder(
-      itemCount: searchSnapshot!.docs.length,
+        itemCount: searchSnapshot!.docs.length,
         shrinkWrap: true,
         itemBuilder: (context,index){
-        return SearchTile(
-            userName: searchSnapshot!.docs[index]['name'],
-            userEmail: searchSnapshot!.docs[index]['email']
-        );
+          return SearchTile(
+              userName: searchSnapshot!.docs[index]['name'],
+              userEmail: searchSnapshot!.docs[index]['email']
+          );
         }
     ):Container();
   }
@@ -56,7 +56,7 @@ class _SearchScreenState extends State<SearchScreen>{
       Navigator.push(context,
           MaterialPageRoute(
               builder: (context) => ConversationScreen(
-                chatRoomId
+                  chatRoomId
               )));
     }
     else{
@@ -124,7 +124,7 @@ class _SearchScreenState extends State<SearchScreen>{
             Container(
               decoration: BoxDecoration(
                   color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30)
+                  borderRadius: BorderRadius.circular(30)
               ),
               padding: EdgeInsets.symmetric(horizontal: 24,vertical: 20),
               child: Row(
@@ -134,9 +134,9 @@ class _SearchScreenState extends State<SearchScreen>{
                         controller: searchTextEditingController,
                         decoration: InputDecoration(
                             hintText: "Search username...",
-                          hintStyle: TextStyle(
-                              color: Colors.black54
-                          ),
+                            hintStyle: TextStyle(
+                                color: Colors.black54
+                            ),
                             border: InputBorder.none
                         ),
                       )
@@ -147,19 +147,19 @@ class _SearchScreenState extends State<SearchScreen>{
                     },
                     child: Container(
                       //height: 40,
-                        //width: 40,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.blue,
-                            Colors.blue,
-                            Colors.lightBlueAccent,
-                            Colors.blue,
-                            Colors.blue
-                          ]
+                      //width: 40,
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                colors: [
+                                  Colors.blue,
+                                  Colors.blue,
+                                  Colors.lightBlueAccent,
+                                  Colors.blue,
+                                  Colors.blue
+                                ]
+                            ),
+                            borderRadius: BorderRadius.circular(30)
                         ),
-                          borderRadius: BorderRadius.circular(30)
-                      ),
                         padding: EdgeInsets.all(8),
                         child: Icon(Icons.search,size: 40,)
                     ),

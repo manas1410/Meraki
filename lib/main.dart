@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ()=>Navigator.pushReplacement(context,
             MaterialPageRoute(builder:
                 (context) =>
-                    Authenticate()
+                Authenticate()
             )
         )
     );
@@ -80,36 +80,24 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children:[
-          Image.asset("assets/images/icon.png",
-            height: MediaQuery.of(context).size.height*0.23,
-            width: MediaQuery.of(context).size.width*0.5,
-            fit: BoxFit.fill
-        ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height*0.05,
-          ),
-          Image.asset("assets/images/Translata1.png",
-              height: MediaQuery.of(context).size.height*0.05,
-              width: MediaQuery.of(context).size.width*0.70,
-              fit: BoxFit.fill
-          )
+              Image.asset("assets/images/icon.png",
+                  height: MediaQuery.of(context).size.height*0.23,
+                  width: MediaQuery.of(context).size.width*0.5,
+                  fit: BoxFit.fill
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height*0.05,
+              ),
+              Image.asset("assets/images/Translata1.png",
+                  height: MediaQuery.of(context).size.height*0.05,
+                  width: MediaQuery.of(context).size.width*0.70,
+                  fit: BoxFit.fill
+              )
 
-        ]
-    )
+            ]
+        )
     );
   }
 }
 
-class IamBlank extends StatefulWidget {
-  const IamBlank({Key? key}) : super(key: key);
 
-  @override
-  _IamBlankState createState() => _IamBlankState();
-}
-
-class _IamBlankState extends State<IamBlank> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}

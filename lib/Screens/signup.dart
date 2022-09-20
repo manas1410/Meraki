@@ -42,29 +42,29 @@ class _SignUpState extends State<SignUp> {
         isLoading = true;
       });
       try{
-      authMethods
-          .signUpwithEmailAndPassword(emailTextEditingController.text,
-          passwordTextEditingController.text)
-          .then((value) {
-            Constants.email=emailTextEditingController.text;
-        //print("${value.uid}");
+        authMethods
+            .signUpwithEmailAndPassword(emailTextEditingController.text,
+            passwordTextEditingController.text)
+            .then((value) {
+          Constants.email=emailTextEditingController.text;
+          //print("${value.uid}");
 
-        Map<String, String> userInfoMap = {
-          "name": userNameTextEditingController.text,
-          "email": emailTextEditingController.text,
-        };
+          Map<String, String> userInfoMap = {
+            "name": userNameTextEditingController.text,
+            "email": emailTextEditingController.text,
+          };
 
-        HelperFunctions.saveUserEmailSharedPreference(
-            emailTextEditingController.text);
-        HelperFunctions.saveUserNameSharedPreference(
-            userNameTextEditingController.text);
-        databaseMethods.uploadUserInfo(userInfoMap);
-        HelperFunctions.saveUserLoggedInSharedPreference(true);
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => ChatRoom()
-        ));
-      }
-      );
+          HelperFunctions.saveUserEmailSharedPreference(
+              emailTextEditingController.text);
+          HelperFunctions.saveUserNameSharedPreference(
+              userNameTextEditingController.text);
+          databaseMethods.uploadUserInfo(userInfoMap);
+          HelperFunctions.saveUserLoggedInSharedPreference(true);
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => ChatRoom()
+          ));
+        }
+        );
       }
       catch(signUpError) {
         if(signUpError is PlatformException) {
@@ -78,7 +78,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromRGBO(245, 237, 223, 1),
+      backgroundColor: Color.fromRGBO(245, 237, 223, 1),
       body: isLoading
           ? Container(
         child: Center(child: CircularProgressIndicator()),
@@ -99,10 +99,10 @@ class _SignUpState extends State<SignUp> {
                       Positioned(
                           child:
                           Image.asset("assets/images/cyber1.png",
-                            height: MediaQuery.of(context).size.height*0.4,
-                            width: MediaQuery.of(context).size.width,
-                          fit: BoxFit.fill
-                       )),
+                              height: MediaQuery.of(context).size.height*0.4,
+                              width: MediaQuery.of(context).size.width,
+                              fit: BoxFit.fill
+                          )),
                       Positioned(
                           child:
                           Image.asset("assets/images/cyber1.png",
@@ -111,8 +111,8 @@ class _SignUpState extends State<SignUp> {
                               fit: BoxFit.fill
                           )),
                       Positioned(
-                        top: MediaQuery.of(context).size.height*0.01,
-                        right: MediaQuery.of(context).size.width*0.04,
+                          top: MediaQuery.of(context).size.height*0.01,
+                          right: MediaQuery.of(context).size.width*0.04,
                           child:
                           Image.asset("assets/images/cyber.png", height: 200,)),
                     ],
@@ -148,121 +148,121 @@ class _SignUpState extends State<SignUp> {
                   child: Column(
                     children: [
                       Wrap(
-                        children:[
-                          Container(
-                            child: Icon(Icons.person,color: Colors.grey,
-                              size: 45,
-                            ),
-                            height: MediaQuery.of(context).size.height*0.07,
-                            //width: MediaQuery.of(context).size.width*0.12
-                          ),
-                          Container(
-                          width:  MediaQuery.of(context).size.width*0.83,
-                          height: MediaQuery.of(context).size.height*0.09,
-                          child: TextFormField(
-                            validator: (val) {
-                              return (val!.isEmpty || val.length < 4)
-                                  ? "Wrong Username"
-                                  : null;
-                            },
-                            controller: userNameTextEditingController,
-                            style: simpleTextFieldStyle(),
-                            decoration: InputDecoration(
-                                hintText: "USERNAME",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-
-                                hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
-
-                            ),
-                          ),
-                        ),
-                        ]
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.001,),
-                          Wrap(
-                            children:[
-
-                              Container(
-                                  child: Icon(Icons.email_outlined,color: Colors.grey,
-                                    size: 45,
-                                  ),
-                                  height: MediaQuery.of(context).size.height*0.07,
-                                  //width: MediaQuery.of(context).size.width*0.12
+                          children:[
+                            Container(
+                              child: Icon(Icons.person,color: Colors.grey,
+                                size: 45,
                               ),
-
-
-                              Container(
+                              height: MediaQuery.of(context).size.height*0.07,
+                              //width: MediaQuery.of(context).size.width*0.12
+                            ),
+                            Container(
                               width:  MediaQuery.of(context).size.width*0.83,
                               height: MediaQuery.of(context).size.height*0.09,
-                            child: TextFormField(
-                              validator: (val) {
-                                return RegExp(
-                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+[a-zA-Z]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                    .hasMatch(val!)
-                                    ? null
-                                    : "Please enter valid email address";
-                              },
-                              controller: emailTextEditingController,
-                              style: simpleTextFieldStyle(),
-                              decoration: InputDecoration(
-                                  hintText: "EMAIL",
+                              child: TextFormField(
+                                validator: (val) {
+                                  return (val!.isEmpty || val.length < 4)
+                                      ? "Wrong Username"
+                                      : null;
+                                },
+                                controller: userNameTextEditingController,
+                                style: simpleTextFieldStyle(),
+                                decoration: InputDecoration(
+                                    hintText: "USERNAME",
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+
+                                    hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
+
+                                ),
+                              ),
+                            ),
+                          ]
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.001,),
+                      Wrap(
+                          children:[
+
+                            Container(
+                              child: Icon(Icons.email_outlined,color: Colors.grey,
+                                size: 45,
+                              ),
+                              height: MediaQuery.of(context).size.height*0.07,
+                              //width: MediaQuery.of(context).size.width*0.12
+                            ),
+
+
+                            Container(
+                              width:  MediaQuery.of(context).size.width*0.83,
+                              height: MediaQuery.of(context).size.height*0.09,
+                              child: TextFormField(
+                                validator: (val) {
+                                  return RegExp(
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+[a-zA-Z]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                      .hasMatch(val!)
+                                      ? null
+                                      : "Please enter valid email address";
+                                },
+                                controller: emailTextEditingController,
+                                style: simpleTextFieldStyle(),
+                                decoration: InputDecoration(
+                                    hintText: "EMAIL",
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+
+                                    hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
+
+                                ),
+                              ),
+                            ),]
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.001,),
+                      Wrap(
+                          children: [
+
+                            Container(
+                              child: Icon(Icons.lock,color: Colors.grey,
+                                size: 45,
+                              ),
+                              height: MediaQuery.of(context).size.height*0.07,
+                              //width: MediaQuery.of(context).size.width*0.12
+                            ),
+
+                            Container(
+                              width:  MediaQuery.of(context).size.width*0.83,
+                              height: MediaQuery.of(context).size.height*0.09,
+                              child: TextFormField(
+                                obscureText: _isObscure,
+                                validator: (val) {
+                                  return (val!.length > 6)
+                                      ? null
+                                      : "Please provide password atleast 7 character";
+                                },
+                                controller: passwordTextEditingController,
+                                style: simpleTextFieldStyle(),
+                                decoration: InputDecoration(
+                                  hintText: "PASSWORD",
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),
 
-                                  hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1))
-
+                                  hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1)),
+                                  suffixIcon: IconButton(
+                                      icon: Icon(
+                                        !_isObscure ? Icons.visibility : Icons.visibility_off,
+                                        //color: Color.fromRGBO(245, 237, 223, 1),
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _isObscure = !_isObscure;
+                                        });
+                                      }),
+                                ),
                               ),
                             ),
-                        ),]
-                          ),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.001,),
-                      Wrap(
-                        children: [
-
-                                Container(
-                                  child: Icon(Icons.lock,color: Colors.grey,
-                                    size: 45,
-                                  ),
-                                  height: MediaQuery.of(context).size.height*0.07,
-                                  //width: MediaQuery.of(context).size.width*0.12
-                                ),
-
-                          Container(
-                          width:  MediaQuery.of(context).size.width*0.83,
-                          height: MediaQuery.of(context).size.height*0.09,
-                          child: TextFormField(
-                            obscureText: _isObscure,
-                            validator: (val) {
-                              return (val!.length > 6)
-                                  ? null
-                                  : "Please provide password atleast 7 character";
-                            },
-                            controller: passwordTextEditingController,
-                            style: simpleTextFieldStyle(),
-                            decoration: InputDecoration(
-                                hintText: "PASSWORD",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-
-                                hintStyle: TextStyle(color: Color.fromRGBO(175, 175, 175, 1)),
-                              suffixIcon: IconButton(
-                            icon: Icon(
-                            !_isObscure ? Icons.visibility : Icons.visibility_off,
-                              //color: Color.fromRGBO(245, 237, 223, 1),
-                                ),
-                              onPressed: () {
-                                setState(() {
-                                  _isObscure = !_isObscure;
-                                });
-                              }),
-                            ),
-                          ),
-                        ),
-                        ]
+                          ]
                       ),
                     ],
                   ),
@@ -321,30 +321,7 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(
                   height:MediaQuery.of(context).size.width*0.05,
                 ),
-                /*Container(
-                  alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
-                    color:Color(0xff2A55BC),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width:50 ,
-                      ),
-                      Image.asset("assets/images/google.png",
-                        height: 30,
-                      ),
-                      Text("  Sign In with Google",
-                          style: TextStyle(
-                            fontSize: 23,
-                            fontWeight: FontWeight.bold,
-                          )),
-                    ],
-                  ),
-                ),*/
+
                 SizedBox(
                   height: 4,
                 ),
